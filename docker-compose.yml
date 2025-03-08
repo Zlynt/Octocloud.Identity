@@ -1,0 +1,22 @@
+version: "3.4"
+services:
+  octocloud:
+    container_name: octocloud_identity
+    image: ghcr.io/ivaft/octocloud-identity:dev
+    ports:
+      - 8555:8080
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=$TZ
+      # PostgreSQL
+      - Database__HOST=$DB__HOST
+      - Database__DATABASE=$DB__DATABASE
+      - Database__USERNAME=$DB__USERNAME
+      - Database__PASSWORD=$DB__PASSWORD
+      # Redis
+      - Redis__Configuration=$Redis__Configuration
+      - Redis__InstanceName=$Redis__InstanceName
+      - Redis__Username=$Redis__Username
+      - Redis__Password=$Redis__Password
+    restart: unless-stopped
